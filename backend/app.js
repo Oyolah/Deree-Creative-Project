@@ -27,6 +27,7 @@ app.use("/api/blogs", require("./routes/blogRoutes"));
 app.use("/api/comments", require("./routes/commentRoutes"));
 app.use("/api/quiz", require("./routes/quizRoutes")); // Add quiz routes
 app.use("/api/leaderboard", require("./routes/leaderboardRoutes"));
+app.use("/api/admin", require("./routes/adminRoutes")); // Make sure this line exists
 
 // Error Handler
 app.use(errorHandler);

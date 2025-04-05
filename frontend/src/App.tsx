@@ -1,7 +1,7 @@
 // App.tsx
 import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout"; // Import the Layout component
+import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -10,6 +10,8 @@ import BlogDetails from "./pages/BlogDetails";
 import { AuthProvider } from "./AuthContext/AuthContext";
 import QuizPage from "./pages/QuizPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
+import AdminDashboard from "./pages/AdminDashboard"; // Add this import
+import AdminRoute from "./components/AdminRoute"; // We'll create this next
 
 const App = () => {
     return (
@@ -30,6 +32,14 @@ const App = () => {
                             <Route
                                 path="/blogs/:id"
                                 element={<BlogDetails />}
+                            />
+                            <Route
+                                path="/admin"
+                                element={
+                                    <AdminRoute>
+                                        <AdminDashboard />
+                                    </AdminRoute>
+                                }
                             />
                         </Routes>
                     </Layout>

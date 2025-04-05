@@ -1,20 +1,27 @@
 // utils/menuConfig.ts
 import { ButtonProps } from "@chakra-ui/react";
+import { User } from "../types/types";
 
 interface MenuItem {
     label: string;
-    path?: string; // Path for navigation
-    onClick?: () => void; // Function to call on click
-    icon?: React.ReactElement; // Optional icon
-    isVisible?: boolean; // Conditionally show/hide the item
-    style?: ButtonProps; // Custom styles for the item
+    path?: string;
+    onClick?: () => void;
+    icon?: React.ReactElement;
+    isVisible?: boolean;
+    style?: ButtonProps;
 }
 
 export const getMenuItems = (
     isLoggedIn: boolean,
-    logout: () => void
+    logout: () => void,
+    user?: User | null
 ): MenuItem[] => {
     const commonMenuItems: MenuItem[] = [
+        {
+            label: "Home",
+            path: "/",
+            isVisible: true,
+        },
         {
             label: "Quiz",
             path: "/quiz",
@@ -25,10 +32,17 @@ export const getMenuItems = (
             path: "/leaderboard",
             isVisible: true,
         },
+    ];
+
+    const adminMenuItems: MenuItem[] = [
         {
-            label: "Contact",
-            path: "/contact",
-            isVisible: true,
+            label: "Admin Dashboard",
+            path: "/admin",
+            isVisible: user?.role === "admin",
+            style: {
+                colorScheme: "purple",
+                variant: "solid",
+            },
         },
     ];
 
@@ -39,15 +53,13 @@ export const getMenuItems = (
             isVisible: true,
         },
         {
-            label: "Profile",
-            path: "/profile",
-            isVisible: true,
-        },
-        {
             label: "Logout",
             onClick: logout,
             isVisible: true,
-            style: { colorScheme: "red", variant: "solid" }, // Custom style for Logout (You can apply custom style to any menu)
+            style: {
+                colorScheme: "red",
+                variant: "solid",
+            },
         },
     ];
 
@@ -66,6 +78,8 @@ export const getMenuItems = (
 
     return [
         ...commonMenuItems,
-        ...(isLoggedIn ? loggedInMenuItems : loggedOutMenuItems),
+        ...(isLoggedIn
+            ? [...adminMenuItems, ...loggedInMenuItems]
+            : loggedOutMenuItems),
     ];
 };

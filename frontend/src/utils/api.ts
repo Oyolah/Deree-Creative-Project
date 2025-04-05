@@ -2,10 +2,8 @@ import axios from "axios";
 
 // Create an Axios instance with a base URL
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL, // Use environment variable
-    headers: {
-        "Content-Type": "application/json",
-    },
+    baseURL: import.meta.env.VITE_API_URL || "/api", // Ensure correct base
+    headers: { "Content-Type": "application/json" },
 });
 
 // Add a request interceptor to include the auth token in headers
