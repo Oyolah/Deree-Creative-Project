@@ -104,7 +104,15 @@ const CreateBlog = () => {
     };
 
     return (
-        <Box maxW="md" mx="auto" mt={10}>
+        <Box
+            maxW="lg"
+            width="100vh"
+            mx="auto"
+            mt={10}
+            boxShadow="2xl"
+            borderRadius="2xl"
+            p={8}
+        >
             <form onSubmit={handleSubmit}>
                 <FormControl>
                     <FormLabel>Title</FormLabel>

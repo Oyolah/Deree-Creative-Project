@@ -78,7 +78,7 @@ const AdminCommentsPanel = () => {
                     {comments.map((comment) => (
                         <Tr key={comment._id}>
                             <Td>{comment.text}</Td>
-                            <Td>{comment.user?.name || "Anonymous"}</Td>
+                            <Td>{comment.user || "Anonymous"}</Td>
                             <Td>{comment.blog?.title || "Unknown Blog"}</Td>
                             <Td>
                                 <Button

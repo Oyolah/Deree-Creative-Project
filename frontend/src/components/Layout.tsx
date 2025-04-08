@@ -1,5 +1,5 @@
 // components/Layout.tsx
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import Header from "./Header";
 
 interface LayoutProps {
@@ -8,16 +8,15 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
     return (
-        <Box>
-            {/* Header */}
+        <Flex direction="column" minH="100vh">
+            {/* Fixed Header */}
             <Header />
 
             {/* Main Content */}
-            <Box mt="64px" p={4}>
-                {/* Add margin-top to account for the fixed header */}
+            <Box flex="1" mt="64px" p={4}>
                 {children}
             </Box>
-        </Box>
+        </Flex>
     );
 };
 
