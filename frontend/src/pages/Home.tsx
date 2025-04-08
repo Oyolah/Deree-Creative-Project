@@ -99,26 +99,6 @@ const Home = () => {
             </Box>
         </Box>
     );
-
-    // return (
-    //     <Box p={4} pt="80px">
-    //         {" "}
-    //         {/* Added padding top to account for fixed header */}
-    //         <Heading as="h1" size="xl" mb={4}>
-    //             Welcome to the Creative Project Blog
-    //         </Heading>
-    //         <SDGVisualization />
-    //         <VStack spacing={4} align="stretch">
-    //             {blogs.map((blog) => (
-    //                 <BlogCard
-    //                     key={blog._id}
-    //                     blog={blog}
-    //                     onUpdate={handleBlogUpdate}
-    //                 />
-    //             ))}
-    //         </VStack>
-    //     </Box>
-    // );
 };
 
 export default Home;
