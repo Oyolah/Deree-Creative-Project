@@ -29,6 +29,7 @@ const BlogCard = ({ blog, onUpdate }: BlogCardProps) => {
     ) => {
         onUpdate(blog._id, updatedLikes, updatedDislikes);
     };
+    console.log(blog);
 
     return (
         <Box
@@ -62,10 +63,7 @@ const BlogCard = ({ blog, onUpdate }: BlogCardProps) => {
                     loop
                     muted
                 >
-                    <source
-                        src={`http://localhost:5001/${blog.video}`}
-                        type="video/mp4"
-                    />
+                    <source src={`${baseURL}/${blog.video}`} type="video/mp4" />
                     Your browser does not support the video tag.
                 </Box>
             )}
