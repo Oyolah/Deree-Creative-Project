@@ -11,10 +11,10 @@ import {
     useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { User } from "../../types/types.ts";
-import { deleteUser, fetchAllUsers } from "../../services/adminService.ts";
+import { User } from "../types/types.ts";
+import { deleteUser, fetchAllUsers } from "../services/adminService.ts";
 
-const AdminUsersPanel = () => {
+const AdminUserPanel = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
     const toast = useToast();
@@ -94,4 +94,4 @@ const AdminUsersPanel = () => {
     );
 };
 
-export default AdminUsersPanel;
+export default AdminUserPanel;

@@ -8,7 +8,7 @@ import {
     TabPanels,
     TabPanel,
 } from "@chakra-ui/react";
-import AdminUsersPanel from "../components/admin/AdminUsersPanel";
+import AdminUserPanel from "../components/AdminUserPanel";
 import AdminBlogsPanel from "../components/admin/AdminBlogsPanel";
 import AdminCommentsPanel from "../components/admin/AdminCommentsPanel";
 import AdminLeaderboardPanel from "../components/admin/AdminLeaderboardPanel";
@@ -26,7 +26,7 @@ const AdminDashboard = () => {
                 </TabList>
                 <TabPanels>
                     <TabPanel>
-                        <AdminUsersPanel />
+                        <AdminUserPanel />
                     </TabPanel>
                     <TabPanel>
                         <AdminBlogsPanel />
