@@ -38,9 +38,9 @@ const BlogCard = ({ blog, onUpdate }: BlogCardProps) => {
             boxShadow="md"
             transition="all 0.2s"
             _hover={{ transform: "translateY(-4px)", shadow: "lg" }}
-            height="100%"
             display="flex"
             flexDirection="column"
+            alignSelf="start" // 👈 prevents stretching to max height in grid
         >
             {/* Media Section */}
             {blog.image && (
@@ -50,8 +50,6 @@ const BlogCard = ({ blog, onUpdate }: BlogCardProps) => {
                     width="100%"
                     height="200px"
                     objectFit="cover"
-                    borderWidth="1px"
-                    borderRadius="lg"
                 />
             )}
             {blog.video && (
@@ -59,10 +57,9 @@ const BlogCard = ({ blog, onUpdate }: BlogCardProps) => {
                     as="video"
                     controls
                     width="100%"
-                    height="600px"
+                    height="400px"
                     objectFit="cover"
-                    borderWidth="1px"
-                    borderRadius="lg"
+                    borderTop="1px solid #e2e8f0"
                     playsInline
                     loop
                     muted
@@ -76,11 +73,11 @@ const BlogCard = ({ blog, onUpdate }: BlogCardProps) => {
             )}
 
             {/* Content Section */}
-            <Box p={4} flex={1} display="flex" flexDirection="column">
+            <Box p={4} display="flex" flexDirection="column">
                 <Heading as="h2" size="md" mb={2} noOfLines={2}>
                     {blog.title}
                 </Heading>
-                <Text mb={4} noOfLines={3} flex={1}>
+                <Text mb={4} noOfLines={3}>
                     {blog.content}
                 </Text>
 
