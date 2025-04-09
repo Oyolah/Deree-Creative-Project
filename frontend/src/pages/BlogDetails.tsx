@@ -144,7 +144,7 @@ const BlogDetails = () => {
         }
 
         try {
-            const res = await axios.post<Comment>(`${baseURL}api/comments`, {
+            const res = await axios.post<Comment>(`${baseURL}/api/comments`, {
                 blogId: id,
                 text: newComment,
                 username: username || "Anonymous",
@@ -178,11 +178,10 @@ const BlogDetails = () => {
                 {/* Media Section */}
                 {blog.image && (
                     <Image
-                        src={`${baseURL}${blog.image}`}
+                        src={`${baseURL}/${blog.image}`}
                         alt={blog.title}
                         mb={6}
                         borderRadius="md"
-                        maxH="400px"
                         w="100%"
                         objectFit="cover"
                     />
@@ -205,11 +204,11 @@ const BlogDetails = () => {
                             controls
                         >
                             <source
-                                src={`${baseURL}${blog.video}`}
+                                src={`${baseURL}/${blog.video}`}
                                 type="video/mp4"
                             />
                             <source
-                                src={`${baseURL}${blog.video.replace(
+                                src={`${baseURL}/${blog.video.replace(
                                     ".mp4",
                                     ".webm"
                                 )}`}

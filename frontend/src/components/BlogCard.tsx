@@ -45,10 +45,8 @@ const BlogCard = ({ blog, onUpdate }: BlogCardProps) => {
             {/* Media Section */}
             {blog.image && (
                 <Image
-                    src={`${baseURL}${blog.image}`}
+                    src={`${baseURL}/${blog.image}`}
                     alt={blog.title}
-                    width="100%"
-                    height="200px"
                     objectFit="cover"
                 />
             )}
