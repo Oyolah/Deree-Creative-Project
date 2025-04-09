@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                         }
                     );
                     if (res.data) {
-                        setUser(res.data); // Update the user state
+                        setUser(res.data.data); // Update the user state
                     }
                 } catch (error) {
                     console.error("Failed to fetch user profile:", error);

@@ -28,7 +28,10 @@ export interface Blog {
 // Comment type
 export interface Comment {
     _id: string;
-    user: { name: string } | string;
+    user: {
+        name: string;
+        avatar: string;
+    };
     blog: { title: string } | string;
     text: string;
     createdAt: string;
