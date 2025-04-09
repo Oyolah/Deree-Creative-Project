@@ -11,8 +11,8 @@ import {
     useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { User } from "../../types/types";
-import { deleteUser, fetchAllUsers } from "../../services/adminService";
+import { User } from "../../types/types.ts";
+import { deleteUser, fetchAllUsers } from "../../services/adminService.ts";
 
 const AdminUsersPanel = () => {
     const [users, setUsers] = useState<User[]>([]);
