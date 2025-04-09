@@ -8,7 +8,7 @@ import {
     TabPanels,
     TabPanel,
 } from "@chakra-ui/react";
-import AdminUserPanel from "../components/AdminUserPanel";
+import AdminUserPanel from "../components/admin/AdminUsersPanel";
 import AdminBlogsPanel from "../components/admin/AdminBlogsPanel";
 import AdminCommentsPanel from "../components/admin/AdminCommentsPanel";
 import AdminLeaderboardPanel from "../components/admin/AdminLeaderboardPanel";

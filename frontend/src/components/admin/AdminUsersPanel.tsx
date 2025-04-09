@@ -1,4 +1,4 @@
-// components/admin/AdminUsersPanel.tsx
+// src/components/admin/AdminUsersPanel.tsx
 import {
     Box,
     Table,
@@ -11,10 +11,10 @@ import {
     useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { User } from "../../types/types";
-import { deleteUser, fetchAllUsers } from "../../services/adminService";
+import { User } from "../../types/types.ts";
+import { deleteUser, fetchAllUsers } from "../../services/adminService.ts";
 
-const AdminUsersPanel = () => {
+const AdminUserPanel = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
     const toast = useToast();
@@ -58,13 +58,11 @@ const AdminUsersPanel = () => {
         }
     };
 
-    if (loading) {
-        return <Box>Loading users...</Box>;
-    }
+    if (loading) return <Box>Loading users...</Box>;
 
     return (
-        <Box>
-            <Table variant="simple">
+        <Box overflowX="auto">
+            <Table variant="striped">
                 <Thead>
                     <Tr>
                         <Th>Name</Th>
@@ -96,4 +94,4 @@ const AdminUsersPanel = () => {
     );
 };
 
-export default AdminUsersPanel;
+export default AdminUserPanel;
