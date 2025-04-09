@@ -32,6 +32,11 @@ export const getMenuItems = (
             path: "/leaderboard",
             isVisible: true,
         },
+        {
+            label: "Awareness",
+            path: "/awareness",
+            isVisible: true,
+        },
     ];
 
     const adminMenuItems: MenuItem[] = [

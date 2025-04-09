@@ -12,6 +12,7 @@ import QuizPage from "./pages/QuizPage";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import AdminDashboard from "./pages/AdminDashboard"; // Add this import
 import AdminRoute from "./components/AdminRoute"; // We'll create this next
+import AwarenessPage from "./pages/Awareness";
 
 const App = () => {
     return (
@@ -32,6 +33,10 @@ const App = () => {
                             <Route
                                 path="/blogs/:id"
                                 element={<BlogDetails />}
+                            />
+                            <Route
+                                path="/awareness"
+                                element={<AwarenessPage />}
                             />
                             <Route
                                 path="/admin"

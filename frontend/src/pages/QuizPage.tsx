@@ -113,47 +113,67 @@ const QuizPage = () => {
         setTimeLeft(10);
         setIsAnswerSelected(false);
     };
-
     if (!gameStarted) {
         return (
             <Layout>
-                <Box maxW="md" mx="auto" mt={10}>
-                    <Text fontSize="xl" mb={4}>
-                        Enter your name to start the quiz:
-                    </Text>
-                    <Input
-                        placeholder="Your Name"
-                        value={playerName}
-                        onChange={(e) => setPlayerName(e.target.value)}
-                        mb={4}
-                    />
-                    <Button
-                        colorScheme="teal"
-                        onClick={() => setGameStarted(true)}
-                        isDisabled={!playerName}
+                <Box maxW="lg" mx="auto" mt={10}>
+                    <Box
+                        bg="white"
+                        p={6}
+                        rounded="2xl"
+                        shadow="lg"
+                        textAlign="center"
                     >
-                        Start Quiz
-                    </Button>
+                        <Text fontSize="xl" mb={4}>
+                            Enter your name to start the quiz:
+                        </Text>
+                        <Input
+                            placeholder="Your Name"
+                            value={playerName}
+                            onChange={(e) => setPlayerName(e.target.value)}
+                            mb={4}
+                        />
+                        <Button
+                            colorScheme="teal"
+                            onClick={() => setGameStarted(true)}
+                            isDisabled={!playerName}
+                            width="full"
+                        >
+                            Start Quiz
+                        </Button>
+                    </Box>
                 </Box>
             </Layout>
         );
     }
 
     if (showResult) {
-        const totalQuestions = quizzes.length; // Total number of questions
-        const correctAnswers = score.correct; // Number of correct answers
+        const totalQuestions = quizzes.length;
+        const correctAnswers = score.correct;
 
         return (
             <Layout>
-                <Box textAlign="center" mt={10}>
-                    <Heading>Quiz Result</Heading>
-                    <Text>
-                        Correct Answers: {correctAnswers}/{totalQuestions}
-                    </Text>
-                    <Text>Incorrect Answers: {score.incorrect}</Text>
-                    <Button mt={4} colorScheme="teal" onClick={handleRestart}>
-                        Restart Quiz
-                    </Button>
+                <Box maxW="lg" mx="auto" mt={10}>
+                    <Box
+                        bg="white"
+                        p={6}
+                        rounded="2xl"
+                        shadow="lg"
+                        textAlign="center"
+                    >
+                        <Heading size="lg" mb={4}>
+                            Quiz Result
+                        </Heading>
+                        <Text fontSize="lg">
+                            Correct Answers: {correctAnswers}/{totalQuestions}
+                        </Text>
+                        <Text fontSize="lg" mb={4}>
+                            Incorrect Answers: {score.incorrect}
+                        </Text>
+                        <Button colorScheme="teal" onClick={handleRestart}>
+                            Restart Quiz
+                        </Button>
+                    </Box>
                 </Box>
             </Layout>
         );
@@ -161,74 +181,96 @@ const QuizPage = () => {
 
     return (
         <Layout>
-            <Box maxW="md" mx="auto" mt={10}>
-                <Text fontSize="lg" mb={4}>
-                    Time Left: {timeLeft} seconds
-                </Text>
-                <Progress
-                    value={((currentQuestion + 1) / quizzes.length) * 100}
-                    size="sm"
-                    mb={4}
-                />
-                <Text fontSize="xl" fontWeight="bold" mb={4}>
-                    {quizzes[currentQuestion]?.question}
-                </Text>
-                <RadioGroup
-                    value={selectedAnswer}
-                    onChange={handleAnswerSelection}
-                >
-                    <Stack>
-                        {quizzes[currentQuestion]?.options.map(
-                            (option, index) => {
-                                const isCorrect =
-                                    option ===
-                                    quizzes[currentQuestion].correctAnswer;
-                                const isSelected = option === selectedAnswer;
-                                const isWrong =
-                                    isAnswerSelected &&
-                                    isSelected &&
-                                    !isCorrect;
+            <Box maxW="lg" mx="auto" mt={10}>
+                <Box bg="white" p={6} rounded="2xl" shadow="lg">
+                    <Text fontSize="md" mb={2} textAlign="right">
+                        Time Left: <strong>{timeLeft}</strong> seconds
+                    </Text>
+                    <Progress
+                        value={((currentQuestion + 1) / quizzes.length) * 100}
+                        size="sm"
+                        mb={4}
+                        borderRadius="md"
+                        hasStripe
+                        isAnimated
+                    />
+                    <Text fontSize="xl" fontWeight="bold" mb={4}>
+                        {quizzes[currentQuestion]?.question}
+                    </Text>
 
-                                return (
-                                    <Flex key={index} align="center">
-                                        <Box
-                                            w="8px"
-                                            h="40px"
+                    <RadioGroup
+                        value={selectedAnswer}
+                        onChange={handleAnswerSelection}
+                    >
+                        <Stack spacing={3}>
+                            {quizzes[currentQuestion]?.options.map(
+                                (option, index) => {
+                                    const isCorrect =
+                                        option ===
+                                        quizzes[currentQuestion].correctAnswer;
+                                    const isSelected =
+                                        option === selectedAnswer;
+                                    const isWrong =
+                                        isAnswerSelected &&
+                                        isSelected &&
+                                        !isCorrect;
+
+                                    return (
+                                        <Flex
+                                            key={index}
+                                            align="center"
                                             bg={
+                                                isAnswerSelected
+                                                    ? isCorrect
+                                                        ? "green.50"
+                                                        : isWrong
+                                                        ? "red.50"
+                                                        : "gray.50"
+                                                    : "gray.50"
+                                            }
+                                            borderLeft="8px solid"
+                                            borderColor={
                                                 isAnswerSelected
                                                     ? isCorrect
                                                         ? "green.500"
                                                         : isWrong
                                                         ? "red.500"
-                                                        : "gray.200"
-                                                    : "gray.200"
+                                                        : "gray.300"
+                                                    : "gray.300"
                                             }
-                                            mr={2}
-                                            borderRadius="md"
-                                        />
-                                        <Radio
-                                            value={option}
-                                            isDisabled={isAnswerSelected} // Disable after selection
+                                            px={4}
+                                            py={2}
+                                            rounded="md"
                                         >
-                                            {option}
-                                        </Radio>
-                                    </Flex>
-                                );
-                            }
-                        )}
-                    </Stack>
-                </RadioGroup>
-                <Button
-                    mt={4}
-                    colorScheme="teal"
-                    onClick={handleNextQuestion}
-                    isDisabled={!isAnswerSelected}
-                >
-                    {currentQuestion < quizzes.length - 1 ? "Next" : "Finish"}
-                </Button>
-                <Button mt={4} ml={4} colorScheme="red" onClick={handleEndGame}>
-                    End Game
-                </Button>
+                                            <Radio
+                                                value={option}
+                                                isDisabled={isAnswerSelected}
+                                                width="full"
+                                            >
+                                                {option}
+                                            </Radio>
+                                        </Flex>
+                                    );
+                                }
+                            )}
+                        </Stack>
+                    </RadioGroup>
+
+                    <Flex justify="space-between" mt={6}>
+                        <Button
+                            colorScheme="teal"
+                            onClick={handleNextQuestion}
+                            isDisabled={!isAnswerSelected}
+                        >
+                            {currentQuestion < quizzes.length - 1
+                                ? "Next"
+                                : "Finish"}
+                        </Button>
+                        <Button colorScheme="red" onClick={handleEndGame}>
+                            End Game
+                        </Button>
+                    </Flex>
+                </Box>
             </Box>
         </Layout>
     );

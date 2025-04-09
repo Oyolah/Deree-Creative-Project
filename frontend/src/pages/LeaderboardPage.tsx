@@ -16,7 +16,6 @@ import Layout from "../components/Layout";
 import { LeaderboardEntry } from "../types/types"; // Import the type
 
 const LeaderboardPage = () => {
-    // Type the leaderboard state as an array of LeaderboardEntry objects
     const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
 
     useEffect(() => {
@@ -35,31 +34,43 @@ const LeaderboardPage = () => {
     return (
         <Layout>
             <Box textAlign="center" mt={10}>
-                <Heading>Leaderboard</Heading>
-                <Table variant="simple" mt={4}>
-                    <Thead>
-                        <Tr>
-                            <Th>Player Name</Th>
-                            <Th>Correct Answers</Th>
-                            <Th>Incorrect Answers</Th>
-                            <Th>Date</Th>
-                        </Tr>
-                    </Thead>
-                    <Tbody>
-                        {leaderboard.map((entry, index) => (
-                            <Tr key={index}>
-                                <Td>{entry.playerName}</Td>
-                                <Td>{entry.correctAnswers}</Td>
-                                <Td>{entry.incorrectAnswers}</Td>
-                                <Td>
-                                    {new Date(entry.date).toLocaleDateString()}
-                                </Td>
+                <Heading mb={6}>Leaderboard</Heading>
+                <Box
+                    maxW="8xl"
+                    mx="auto"
+                    bg="white"
+                    p={6}
+                    borderRadius="2xl"
+                    boxShadow="lg"
+                    overflowX="auto"
+                >
+                    <Table variant="simple">
+                        <Thead bg="gray.100">
+                            <Tr>
+                                <Th>Player Name</Th>
+                                <Th>Correct Answers</Th>
+                                <Th>Incorrect Answers</Th>
+                                <Th>Date</Th>
                             </Tr>
-                        ))}
-                    </Tbody>
-                </Table>
+                        </Thead>
+                        <Tbody>
+                            {leaderboard.map((entry, index) => (
+                                <Tr key={index}>
+                                    <Td>{entry.playerName}</Td>
+                                    <Td>{entry.correctAnswers}</Td>
+                                    <Td>{entry.incorrectAnswers}</Td>
+                                    <Td>
+                                        {new Date(
+                                            entry.date
+                                        ).toLocaleDateString()}
+                                    </Td>
+                                </Tr>
+                            ))}
+                        </Tbody>
+                    </Table>
+                </Box>
                 <Button
-                    mt={4}
+                    mt={6}
                     colorScheme="teal"
                     onClick={() => (window.location.href = "/quiz")}
                 >

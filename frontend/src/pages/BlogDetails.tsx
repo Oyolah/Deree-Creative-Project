@@ -38,7 +38,7 @@ const BlogDetails = () => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const res = await axios.get<Blog>(`${baseURL}api/blogs/${id}`);
+                const res = await axios.get<Blog>(`${baseURL}/api/blogs/${id}`);
                 setBlog(res.data);
             } catch (error) {
                 toast({
@@ -57,7 +57,7 @@ const BlogDetails = () => {
         const fetchComments = async () => {
             try {
                 const res = await axios.get<Comment[]>(
-                    `${baseURL}api/comments/${id}`
+                    `${baseURL}/api/comments/${id}`
                 );
                 setComments(res.data);
             } catch (error) {
