@@ -17,7 +17,15 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(
+    cors({
+        origin: [
+            "http://localhost:5173",
+            "https://one7roots-hbot.onrender.com",
+        ],
+        credentials: true,
+    })
+);
 // Serve static files from the "uploads" folder
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
