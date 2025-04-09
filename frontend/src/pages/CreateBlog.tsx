@@ -15,6 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { baseURL } from "../utils/config";
 
 const CreateBlog = () => {
     const [title, setTitle] = useState<string>("");
@@ -64,7 +65,7 @@ const CreateBlog = () => {
             if (video) formData.append("video", video);
             if (pdf) formData.append("pdf", pdf); // Add PDF to the form data
 
-            await axios.post("/api/blogs", formData, {
+            await axios.post(`${baseURL}/api/blogs`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${localStorage.getItem("token")}`,

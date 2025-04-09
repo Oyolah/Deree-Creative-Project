@@ -15,6 +15,7 @@ import {
 import axios from "axios";
 import Layout from "../components/Layout";
 import { Quiz } from "../types/types"; // Import the Quiz type
+import { baseURL } from "../utils/config";
 
 const QuizPage = () => {
     // Type the quizzes state as an array of Quiz objects
@@ -49,7 +50,7 @@ const QuizPage = () => {
         if (showResult) {
             const submitScore = async () => {
                 try {
-                    await axios.post("/api/leaderboard/submit", {
+                    await axios.post(`${baseURL}/api/leaderboard/submit`, {
                         playerName,
                         correctAnswers: score.correct,
                         incorrectAnswers: score.incorrect,
@@ -64,7 +65,7 @@ const QuizPage = () => {
 
     const fetchQuizzes = async () => {
         try {
-            const res = await axios.get("/api/quiz");
+            const res = await axios.get(`${baseURL}/api/quiz`);
             setQuizzes(res.data);
         } catch (error) {
             toast({

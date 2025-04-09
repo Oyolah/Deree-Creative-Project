@@ -13,6 +13,7 @@ import {
     AlertIcon,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { baseURL } from "../utils/config";
 import { Blog, Score } from "../types/types"; // Adjust the path as needed
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +30,7 @@ const AdminPanel = () => {
     const fetchData = async () => {
         try {
             const [blogsRes, scoresRes] = await Promise.all([
-                axios.get<Blog[]>("/api/admin/blogs", {
+                axios.get<Blog[]>(`${baseURL}/api/admin/blogs`, {
                     // Specify Blog[] type here
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
@@ -37,7 +38,7 @@ const AdminPanel = () => {
                         )}`,
                     },
                 }),
-                axios.get<Score[]>("/api/leaderboard"), // Specify Score[] type here
+                axios.get<Score[]>(`${baseURL}/api/leaderboard`), // Specify Score[] type here
             ]);
             setBlogs(blogsRes.data);
             setScores(scoresRes.data);
@@ -47,7 +48,7 @@ const AdminPanel = () => {
     };
 
     const deleteBlog = async (id: string) => {
-        await axios.delete(`/api/admin/blogs/${id}`, {
+        await axios.delete(`${baseURL}/api/admin/blogs/${id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
@@ -56,7 +57,7 @@ const AdminPanel = () => {
     };
 
     const deleteScore = async (id: string) => {
-        await axios.delete(`/api/admin/leaderboard/${id}`, {
+        await axios.delete(`${baseURL}/api/admin/leaderboard/${id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },

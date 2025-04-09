@@ -11,6 +11,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import LikeDislikeButtons from "./LikeDislikeButtons";
 import { Blog } from "../types/types";
+import { baseURL } from "../utils/config";
 
 interface BlogCardProps {
     blog: Blog;
@@ -44,7 +45,7 @@ const BlogCard = ({ blog, onUpdate }: BlogCardProps) => {
             {/* Media Section */}
             {blog.image && (
                 <Image
-                    src={`http://localhost:5001/${blog.image}`}
+                    src={`${baseURL}${blog.image}`}
                     alt={blog.title}
                     width="100%"
                     height="200px"

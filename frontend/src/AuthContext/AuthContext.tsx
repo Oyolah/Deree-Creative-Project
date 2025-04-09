@@ -8,6 +8,7 @@ import {
 } from "react";
 import axios from "axios";
 import { User } from "../types/types";
+import { baseURL } from "../utils/config";
 
 interface AuthContextType {
     user: User | null;
@@ -31,7 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 try {
                     // Fetch the user's profile using the token
                     const res = await axios.get<{ data: User }>(
-                        "/api/auth/profile",
+                        `${baseURL}/api/auth/profile`,
                         {
                             headers: { Authorization: `Bearer ${token}` },
                         }
@@ -54,7 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         try {
             const res = await axios.post<{
                 data: { token: string; user: User };
-            }>("/api/auth/login", { email, password });
+            }>(`${baseURL}/api/auth/login`, { email, password });
             if (res.data.data) {
                 localStorage.setItem("token", res.data.data.token); // Save token to localStorage
                 setUser(res.data.data.user); // Update user state

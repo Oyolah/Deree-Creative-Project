@@ -3,6 +3,7 @@ import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { Box, Button, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
+import { baseURL } from "../utils/config";
 
 interface LikeDislikeButtonsProps {
     blogId: string;
@@ -28,7 +29,7 @@ const LikeDislikeButtons = ({
             const res = await axios.put<{
                 likes: string[];
                 dislikes: string[];
-            }>(`/api/blogs/${blogId}/like`);
+            }>(`${baseURL}/api/blogs/${blogId}/like`);
             onUpdate(res.data.likes, res.data.dislikes); // Update state with new likes and dislikes
         } catch (error) {
             console.error("Failed to toggle like:", error);
@@ -50,7 +51,7 @@ const LikeDislikeButtons = ({
             const res = await axios.put<{
                 likes: string[];
                 dislikes: string[];
-            }>(`/api/blogs/${blogId}/dislike`);
+            }>(`${baseURL}/api/blogs/${blogId}/dislike`);
             onUpdate(res.data.likes, res.data.dislikes); // Update state with new likes and dislikes
         } catch (error) {
             console.error("Failed to toggle dislike:", error);

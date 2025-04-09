@@ -11,6 +11,7 @@ import {
     Button,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { baseURL } from "../utils/config";
 import Layout from "../components/Layout";
 import { LeaderboardEntry } from "../types/types"; // Import the type
 
@@ -24,7 +25,7 @@ const LeaderboardPage = () => {
 
     const fetchLeaderboard = async () => {
         try {
-            const res = await axios.get("/api/leaderboard");
+            const res = await axios.get(`${baseURL}/api/leaderboard`);
             setLeaderboard(res.data);
         } catch (error) {
             console.error("Failed to fetch leaderboard:", error);

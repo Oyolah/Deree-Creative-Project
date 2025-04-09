@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { baseURL } from "../utils/config";
 
 const Register = () => {
     const [name, setName] = useState<string>("");
@@ -24,7 +25,7 @@ const Register = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await axios.post("/api/auth/register", {
+            await axios.post(`${baseURL}/api/auth/register`, {
                 name,
                 email,
                 password,
