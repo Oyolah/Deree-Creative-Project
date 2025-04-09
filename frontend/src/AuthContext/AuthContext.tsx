@@ -13,16 +13,19 @@ interface AuthContextType {
     user: User | null;
     login: (email: string, password: string) => Promise<void>;
     logout: () => void;
+    loading: boolean; // Add loading here
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true); // Add loading state
 
     // Check if the user is already logged in on initial load
     useEffect(() => {
         const fetchUser = async () => {
+            setLoading(true); // Start loading
             const token = localStorage.getItem("token");
             if (token) {
                 try {
@@ -41,6 +44,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                     localStorage.removeItem("token"); // Remove invalid token
                 }
             }
+            setLoading(false); // End loading
         };
         fetchUser();
     }, []);
@@ -68,7 +72,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ loading, user, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

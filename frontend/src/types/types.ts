@@ -28,8 +28,8 @@ export interface Blog {
 // Comment type
 export interface Comment {
     _id: string;
-    blog: string; // Blog ID
-    user: User;
+    user: { name: string } | string;
+    blog: { title: string } | string;
     text: string;
     createdAt: string;
     updatedAt: string;
@@ -47,4 +47,27 @@ export interface ApiResponse<T> {
     data?: T;
     message?: string;
     error?: string;
+}
+
+export interface Score {
+    _id: string;
+    playerName: string;
+    correctAnswers: number;
+    incorrectAnswers: number;
+    date?: string; // <-- Add this line (make it optional if not always present)
+}
+
+// types/types.ts (or another appropriate file)
+export interface LeaderboardEntry {
+    playerName: string;
+    correctAnswers: number;
+    incorrectAnswers: number;
+    date: string; // Assuming date is returned as a string from your API
+}
+
+// types/types.ts or an appropriate location
+export interface Quiz {
+    question: string;
+    options: string[];
+    correctAnswer: string;
 }

@@ -1,4 +1,3 @@
-// pages/QuizPage.tsx
 import { useState, useEffect } from "react";
 import {
     Box,
@@ -15,9 +14,12 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import Layout from "../components/Layout";
+import { Quiz } from "../types/types"; // Import the Quiz type
 
 const QuizPage = () => {
-    const [quizzes, setQuizzes] = useState([]);
+    // Type the quizzes state as an array of Quiz objects
+    const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState("");
     const [score, setScore] = useState({ correct: 0, incorrect: 0 });

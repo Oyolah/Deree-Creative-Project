@@ -13,13 +13,14 @@ import {
     AlertIcon,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { Blog, Score } from "../types/types"; // Adjust the path as needed
+import { useNavigate } from "react-router-dom";
 
 const AdminPanel = () => {
-    const [blogs, setBlogs] = useState([]);
-    const [scores, setScores] = useState([]);
+    const [blogs, setBlogs] = useState<Blog[]>([]); // Type 'blogs' as an array of Blog
+    const [scores, setScores] = useState<Score[]>([]); // Type 'scores' as an array of Score
     const [error, setError] = useState("");
-    const router = useRouter();
+    const navigate = useNavigate(); // Use React Router's useNavigate
 
     useEffect(() => {
         fetchData();
@@ -28,14 +29,15 @@ const AdminPanel = () => {
     const fetchData = async () => {
         try {
             const [blogsRes, scoresRes] = await Promise.all([
-                axios.get("/api/admin/blogs", {
+                axios.get<Blog[]>("/api/admin/blogs", {
+                    // Specify Blog[] type here
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem(
                             "token"
                         )}`,
                     },
                 }),
-                axios.get("/api/leaderboard"),
+                axios.get<Score[]>("/api/leaderboard"), // Specify Score[] type here
             ]);
             setBlogs(blogsRes.data);
             setScores(scoresRes.data);
@@ -44,7 +46,7 @@ const AdminPanel = () => {
         }
     };
 
-    const deleteBlog = async (id) => {
+    const deleteBlog = async (id: string) => {
         await axios.delete(`/api/admin/blogs/${id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -53,7 +55,7 @@ const AdminPanel = () => {
         fetchData();
     };
 
-    const deleteScore = async (id) => {
+    const deleteScore = async (id: string) => {
         await axios.delete(`/api/admin/leaderboard/${id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -73,6 +75,9 @@ const AdminPanel = () => {
         );
     }
 
+    console.log("blogs: ", blogs);
+    console.log("scores: ", scores);
+
     return (
         <Box p={4}>
             <Heading mb={6}>Admin Dashboard</Heading>
@@ -80,7 +85,7 @@ const AdminPanel = () => {
             <Heading size="md" mb={4}>
                 Blog Management
             </Heading>
-            <Button mb={4} onClick={() => router.push("/admin/create-blog")}>
+            <Button mb={4} onClick={() => navigate("/admin/create-blog")}>
                 Create New Blog
             </Button>
             <Table variant="simple">
@@ -98,9 +103,7 @@ const AdminPanel = () => {
                                 <Button
                                     mr={2}
                                     onClick={() =>
-                                        router.push(
-                                            `/admin/edit-blog/${blog._id}`
-                                        )
+                                        navigate(`/admin/edit-blog/${blog._id}`)
                                     }
                                 >
                                     Edit

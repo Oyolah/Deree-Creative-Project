@@ -1,19 +1,28 @@
-// components/SDGVisualization.tsx
 import { useState, useEffect } from "react";
 import { Box, Heading, SimpleGrid, Select, Text } from "@chakra-ui/react";
-import { Bar, Pie, Line } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import axios from "axios";
 
 // Register Chart.js components
 Chart.register(...registerables);
 
+interface Indicator {
+    code: string;
+    title: string;
+    value: number;
+}
+
+interface SDGData {
+    indicators: Indicator[];
+}
+
 const SDGVisualization = () => {
-    const [sdgData, setSdgData] = useState(null);
+    const [sdgData, setSdgData] = useState<SDGData | null>(null);
     const [selectedGoal, setSelectedGoal] = useState("1");
 
     // Mock data fallback
-    const mockData = {
+    const mockData: { [key: string]: SDGData } = {
         "1": {
             indicators: [
                 { code: "1.1.1", title: "Extreme Poverty (%)", value: 8.4 },
@@ -58,11 +67,13 @@ const SDGVisualization = () => {
 
     // Prepare chart data
     const chartData = {
-        labels: sdgData?.indicators?.map((ind) => ind.title) || [],
+        labels: sdgData?.indicators?.map((ind: Indicator) => ind.title) || [],
         datasets: [
             {
                 label: "SDG Indicator Value",
-                data: sdgData?.indicators?.map((ind) => ind.value) || [],
+                data:
+                    sdgData?.indicators?.map((ind: Indicator) => ind.value) ||
+                    [],
                 backgroundColor: [
                     "#E5243B",
                     "#DDA63A",

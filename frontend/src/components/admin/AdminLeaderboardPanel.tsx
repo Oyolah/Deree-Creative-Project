@@ -79,7 +79,11 @@ const AdminLeaderboardPanel = () => {
                             <Td>{score.playerName}</Td>
                             <Td>{score.correctAnswers}</Td>
                             <Td>{score.incorrectAnswers}</Td>
-                            <Td>{new Date(score.date).toLocaleDateString()}</Td>
+                            <Td>
+                                {score.date
+                                    ? new Date(score.date).toLocaleDateString()
+                                    : "N/A"}
+                            </Td>
                             <Td>
                                 <Button
                                     colorScheme="red"

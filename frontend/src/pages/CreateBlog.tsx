@@ -64,7 +64,7 @@ const CreateBlog = () => {
             if (video) formData.append("video", video);
             if (pdf) formData.append("pdf", pdf); // Add PDF to the form data
 
-            const res = await axios.post("/api/blogs", formData, {
+            await axios.post("/api/blogs", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${localStorage.getItem("token")}`,

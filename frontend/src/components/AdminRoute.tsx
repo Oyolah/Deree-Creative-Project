@@ -1,7 +1,7 @@
 // components/AdminRoute.tsx
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuth } from "../AuthContext/AuthContext";
-import { Box, Spinner, Text } from "@chakra-ui/react";
+import { Box, Spinner } from "@chakra-ui/react";
 
 const AdminRoute = ({ children }: { children: React.ReactNode }) => {
     const { user, loading } = useAuth();

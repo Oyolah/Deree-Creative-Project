@@ -6,7 +6,6 @@ import {
     Flex,
     Link,
     Image,
-    useToast,
     Button,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
@@ -23,8 +22,6 @@ interface BlogCardProps {
 }
 
 const BlogCard = ({ blog, onUpdate }: BlogCardProps) => {
-    const toast = useToast();
-
     const handleBlogUpdate = (
         updatedLikes: string[],
         updatedDislikes: string[]

@@ -1,4 +1,4 @@
-// src/components/admin/AdminCommentsPanel.tsx
+// export default AdminCommentsPanel;
 import {
     Box,
     Table,
@@ -78,8 +78,16 @@ const AdminCommentsPanel = () => {
                     {comments.map((comment) => (
                         <Tr key={comment._id}>
                             <Td>{comment.text}</Td>
-                            <Td>{comment.user || "Anonymous"}</Td>
-                            <Td>{comment.blog?.title || "Unknown Blog"}</Td>
+                            <Td>
+                                {typeof comment.user === "string"
+                                    ? comment.user
+                                    : comment.user?.name || "Anonymous"}
+                            </Td>
+                            <Td>
+                                {typeof comment.blog === "string"
+                                    ? comment.blog
+                                    : comment.blog?.title || "Unknown Blog"}
+                            </Td>
                             <Td>
                                 <Button
                                     colorScheme="red"

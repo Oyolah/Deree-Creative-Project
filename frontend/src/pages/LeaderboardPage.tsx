@@ -12,9 +12,11 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import Layout from "../components/Layout";
+import { LeaderboardEntry } from "../types/types"; // Import the type
 
 const LeaderboardPage = () => {
-    const [leaderboard, setLeaderboard] = useState([]);
+    // Type the leaderboard state as an array of LeaderboardEntry objects
+    const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
 
     useEffect(() => {
         fetchLeaderboard();
