@@ -19,10 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(
     cors({
-        origin: [
-            "http://localhost:5173",
-            "https://one7roots-hbot.onrender.com",
-        ],
+        origin: ["http://localhost:5173"],
         credentials: true,
     })
 );
