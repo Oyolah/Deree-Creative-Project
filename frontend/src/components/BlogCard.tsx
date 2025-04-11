@@ -29,7 +29,6 @@ const BlogCard = ({ blog, onUpdate }: BlogCardProps) => {
     ) => {
         onUpdate(blog._id, updatedLikes, updatedDislikes);
     };
-    console.log(blog);
 
     return (
         <Box

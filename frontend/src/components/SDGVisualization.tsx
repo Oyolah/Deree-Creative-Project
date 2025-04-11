@@ -58,7 +58,6 @@ const SDGVisualization = () => {
                 );
                 setSdgData(response.data);
             } catch (error) {
-                console.log("Using mock data due to API error");
                 setSdgData(mockData[selectedGoal] || mockData["1"]);
             }
         };

@@ -76,9 +76,6 @@ const AdminPanel = () => {
         );
     }
 
-    console.log("blogs: ", blogs);
-    console.log("scores: ", scores);
-
     return (
         <Box p={4}>
             <Heading mb={6}>Admin Dashboard</Heading>
