@@ -18,8 +18,8 @@ export const getMenuItems = (
 ): MenuItem[] => {
     const commonMenuItems: MenuItem[] = [
         {
-            label: "SDGs",
-            path: "/sdgs",
+            label: "Home",
+            path: "/",
             isVisible: true,
         },
         {
